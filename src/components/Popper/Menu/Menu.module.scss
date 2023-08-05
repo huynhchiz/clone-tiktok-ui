@@ -1,0 +1,22 @@
+.menu-items {
+   width: 223px;
+
+   .menu-item {
+      margin-left: 0;
+   }
+}
+
+.menu-item {
+   width: 100%;
+   height: 42px;
+   padding: 10px 8px 10px 16px;
+   font-size: 1.6rem;
+   font-weight: 600;
+   line-height: 21px;
+   justify-content: flex-start;
+   border-radius: 0;
+
+   &:hover {
+      background-color: rgba(22, 24, 35, 0.03);
+   }
+}

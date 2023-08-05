@@ -1,0 +1,17 @@
+.wrapper {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+
+.container {
+   width: 100%;
+   min-height: 100px;
+   display: flex;
+   //    background-color: yellow;
+}
+
+.content {
+   flex: 1; //chiếm hết width phần còn lại
+   min-height: 1000px;
+}
