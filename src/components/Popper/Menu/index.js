@@ -39,6 +39,7 @@ function Menu({ children, items = [], onChange = defaultFnc }) {
 
    return (
       <Tippy
+         offset={[12, 12]}
          interactive
          delay={[0, 700]}
          // visible //bỏ visible để khi hover nó mới hiện lên

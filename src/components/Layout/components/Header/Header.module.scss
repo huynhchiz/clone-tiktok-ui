@@ -126,3 +126,19 @@
    font-size: 20px;
    cursor: pointer;
 }
+
+.message,
+.inbox {
+   font-size: 2.4rem;
+   margin: 0 14px;
+   cursor: pointer;
+}
+
+.user-avatar {
+   width: 32px;
+   height: 32px;
+   margin-left: 12px;
+   border-radius: 50%;
+   object-fit: cover;
+   cursor: pointer;
+}
