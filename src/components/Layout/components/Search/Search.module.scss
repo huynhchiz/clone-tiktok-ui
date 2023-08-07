@@ -1,12 +1,13 @@
 .search-wrapper,
 .search-result {
-   width: 500px;
+   width: 400px;
    max-width: 500px;
 }
 
 .search-wrapper {
    --search-btn-width: 52px;
    --search-border-radius: 92px;
+
    position: relative;
    display: flex;
    align-items: center;
@@ -67,6 +68,19 @@
    color: #a7a7ab;
    background-color: transparent;
    // display: none;
+}
+
+.loading {
+   animation: rotation 0.5s infinite linear;
+}
+
+@keyframes rotation {
+   from {
+      transform: translateY(-50%) rotate(0deg);
+   }
+   to {
+      transform: translateY(-50%) rotate(359deg);
+   }
 }
 
 .border-between {

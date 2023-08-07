@@ -16,15 +16,30 @@ function Search() {
    const [searchValue, setSearchValue] = useState('');
    const [searchResult, setSearchResult] = useState([]);
    const [showResult, setShowResult] = useState(true);
+   const [loading, setLoading] = useState(false);
 
    const inputRef = useRef();
 
    // callAPI to show search result
    useEffect(() => {
-      setTimeout(() => {
-         setSearchResult([1, 2, 3]);
-      }, 3000);
-   }, []);
+      if (!searchValue.trim()) {
+         setSearchResult([]);
+         return;
+      }
+
+      setLoading(true);
+
+      // encodeURIComponent : mã hóa ký tự chuẩn URL
+      fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(searchValue)}&type=less`)
+         .then((res) => res.json())
+         .then((post) => {
+            setSearchResult(post.data);
+            setLoading(false);
+         })
+         .catch(() => {
+            setLoading(false);
+         });
+   }, [searchValue]);
 
    const handleClear = () => {
       setSearchValue('');
@@ -44,10 +59,9 @@ function Search() {
             <div className={cx('search-result')} tabIndex="-1" {...attrs}>
                <PopperWrapper>
                   <h4 className={cx('search-title')}>Acounts</h4>
-                  <AccountItem />
-                  <AccountItem />
-                  <AccountItem />
-                  <AccountItem />
+                  {searchResult.map((result) => (
+                     <AccountItem key={result.id} data={result} />
+                  ))}
                </PopperWrapper>
             </div>
          )}
@@ -65,13 +79,13 @@ function Search() {
                onFocus={() => setShowResult(true)}
             />
 
-            {!!searchValue && (
+            {!!searchValue && !loading && (
                <button className={cx('clear')} onClick={handleClear}>
                   <FontAwesomeIcon icon={faCircleXmark} />
                </button>
             )}
 
-            {/* <FontAwesomeIcon className={cx('loading')} icon={faCircleNotch} /> */}
+            {loading && <FontAwesomeIcon className={cx('loading')} icon={faCircleNotch} />}
 
             <span className={cx('border-between')}></span>
 
