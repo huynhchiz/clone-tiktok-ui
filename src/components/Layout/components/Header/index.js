@@ -26,6 +26,8 @@ import { Wrapper as PopperWrapper } from '../../../Popper';
 import Button from '../../../Button';
 import AccountItem from '../../../AccountItem';
 import Menu from '../../../Popper/Menu';
+import { InboxIcon, MessageIcon } from '../../../Icons';
+import Image from '../../../Image';
 
 const cx = classNames.bind(styles);
 
@@ -121,7 +123,7 @@ function Header() {
       <header className={cx('wrapper')}>
          <div className={cx('inner')}>
             <div className={cx('logo-wrapper')}>
-               <img className={cx('logo-img')} src={images.logo} alt="tiktok" />
+               <img className={cx('logo-img')} src={images.logoDark} alt="tiktok" />
             </div>
 
             <HeadlessTippy
@@ -164,13 +166,14 @@ function Header() {
                   <>
                      <Tippy delay={[0, 200]} content="Messages" placement="bottom">
                         <button className={cx('message')}>
-                           <FontAwesomeIcon icon={faPaperPlane} />
+                           <MessageIcon />
                         </button>
                      </Tippy>
 
                      <Tippy delay={[0, 200]} content="Inbox" placement="bottom">
                         <button className={cx('inbox')}>
-                           <FontAwesomeIcon icon={faEnvelope} />
+                           <InboxIcon />
+                           <span className={cx('inbox-noti')}>18</span>
                         </button>
                      </Tippy>
                   </>
@@ -181,10 +184,11 @@ function Header() {
                )}
                {currentUser ? (
                   <Menu items={menuUser} onChange={handleMenuChange}>
-                     <img
+                     <Image
                         className={cx('user-avatar')}
                         src="https://p16-sign-useast2a.tiktokcdn.com/tos-useast2a-avt-0068-giso/977b0eda9dee55b2a2dfd266f5ccd729~c5_720x720.jpeg?x-expires=1691492400&x-signature=FIhG%2B5i33SMXCVfR7956qWRIZ9I%3D"
                         alt="Huynh Chi"
+                        // fallback="https://musicart.xboxlive.com/7/4d4d6500-0000-0000-0000-000000000002/504/image.jpg?w=1920&h=1080"
                      />
                   </Menu>
                ) : (
