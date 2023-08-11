@@ -5,6 +5,7 @@ import HeadlessTippy from '@tippyjs/react/headless';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleNotch, faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 
+import { useDebounce } from '../../../../hooks';
 import { Wrapper as PopperWrapper } from '../../../Popper';
 import AccountItem from '../../../AccountItem';
 import styles from './Search.module.scss';
@@ -18,11 +19,13 @@ function Search() {
    const [showResult, setShowResult] = useState(true);
    const [loading, setLoading] = useState(false);
 
+   const debounced = useDebounce(searchValue, 500);
+
    const inputRef = useRef();
 
    // callAPI to show search result
    useEffect(() => {
-      if (!searchValue.trim()) {
+      if (!debounced.trim()) {
          setSearchResult([]);
          return;
       }
@@ -30,7 +33,7 @@ function Search() {
       setLoading(true);
 
       // encodeURIComponent : mã hóa ký tự chuẩn URL
-      fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(searchValue)}&type=less`)
+      fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(debounced)}&type=less`)
          .then((res) => res.json())
          .then((post) => {
             setSearchResult(post.data);
@@ -39,7 +42,7 @@ function Search() {
          .catch(() => {
             setLoading(false);
          });
-   }, [searchValue]);
+   }, [debounced]);
 
    const handleClear = () => {
       setSearchValue('');
