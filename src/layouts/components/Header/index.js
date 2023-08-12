@@ -16,14 +16,14 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { faBookmark, faCircle, faUser } from '@fortawesome/free-regular-svg-icons';
 
-import routesConfig from '../../../../config/routes';
+import config from '../../../config';
 import styles from './Header.module.scss';
 import Search from '../Search';
-import images from '../../../../assets/images';
-import Button from '../../../Button';
-import Menu from '../../../Popper/Menu';
-import { InboxIcon, MessageIcon } from '../../../Icons';
-import Image from '../../../Image';
+import images from '../../../assets/images';
+import Button from '../../../components/Button';
+import Menu from '../../../components/Popper/Menu';
+import { InboxIcon, MessageIcon } from '../../../components/Icons';
+import Image from '../../../components/Image';
 
 const cx = classNames.bind(styles);
 
@@ -230,7 +230,7 @@ function Header() {
    return (
       <header className={cx('wrapper')}>
          <div className={cx('inner')}>
-            <Link to={routesConfig.home} className={cx('logo-wrapper')}>
+            <Link to={config.routes.home} className={cx('logo-wrapper')}>
                <img className={cx('logo-img')} src={images.logoDark} alt="tiktok" />
             </Link>
 
