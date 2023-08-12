@@ -11,7 +11,7 @@ const cx = classNames.bind(styles);
 
 const defaultFnc = () => {};
 
-function Menu({ children, items = [], onChange = defaultFnc }) {
+function Menu({ children, items = [], hideOnClick = false, onChange = defaultFnc }) {
    const [history, setHistory] = useState([{ data: items }]);
 
    //menu hiện tại là phần tử cuối mảng
@@ -39,6 +39,7 @@ function Menu({ children, items = [], onChange = defaultFnc }) {
 
    return (
       <Tippy
+         hideOnClick={hideOnClick}
          offset={[12, 12]}
          interactive
          delay={[0, 700]}

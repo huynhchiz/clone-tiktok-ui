@@ -4,6 +4,7 @@
    --primary: #fe2c55; // màu mặc định của tiktok
    --text-color: #000;
    --white-text: #fff;
+   --font-family: 'TikTokFont', sans-serif;
 
    // Default Layout
    --default-layout-header-height: 60px;
@@ -22,7 +23,7 @@ html {
 }
 
 body {
-   font-family: 'TikTokFont', sans-serif;
+   font-family: var(--font-family);
    font-size: 1.6rem;
    line-height: 1.5;
    text-rendering: optimizeSpeed; //tối ưu tốc độ render font

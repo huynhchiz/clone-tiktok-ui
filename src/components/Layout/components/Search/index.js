@@ -54,6 +54,14 @@ function Search() {
       setShowResult(false);
    };
 
+   const handleChange = (e) => {
+      const searchValue = e.target.value;
+
+      if (searchValue[0] !== ' ') {
+         setSearchValue(searchValue);
+      }
+   };
+
    return (
       <HeadlessTippy
          interactive //hiện tippy
@@ -78,7 +86,7 @@ function Search() {
                className={cx('search-input')}
                placeholder="Search"
                spellCheck={false}
-               onChange={(e) => setSearchValue(e.target.value)}
+               onChange={handleChange}
                onFocus={() => setShowResult(true)}
             />
 
@@ -92,7 +100,7 @@ function Search() {
 
             <span className={cx('border-between')}></span>
 
-            <button className={cx('search-btn')}>
+            <button className={cx('search-btn')} onMouseDown={(e) => e.preventDefault()}>
                <SearchIcon />
             </button>
          </div>
