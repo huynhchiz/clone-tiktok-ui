@@ -5,13 +5,13 @@
 }
 
 .container {
+   margin-top: var(--default-layout-header-height);
    width: 100%;
    min-height: 100px;
    display: flex;
-   //    background-color: yellow;
 }
 
 .content {
-   flex: 1; //chiếm hết width phần còn lại
+   flex: 1;
    min-height: 1000px;
 }

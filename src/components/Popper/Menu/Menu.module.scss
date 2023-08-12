@@ -1,4 +1,7 @@
 .menu-items {
+   --max-height: min((100vh - 96px) - 60px, 734px);
+   --menu-header-height: 50px;
+
    width: 223px;
 
    .menu-item {
@@ -27,7 +30,7 @@
 
 // Header menu
 .header {
-   height: 50px;
+   height: var(--menu-header-height);
    margin-top: -8px;
    position: relative;
 }
@@ -46,4 +49,10 @@
    top: 50%;
    left: 50%;
    transform: translate(-50%, -50%);
+}
+
+// Body menu
+.menu-body {
+   max-height: calc(var(--max-height) - var(--menu-header-height));
+   overflow-y: auto;
 }

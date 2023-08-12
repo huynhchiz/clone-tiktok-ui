@@ -63,48 +63,52 @@ function Search() {
    };
 
    return (
-      <HeadlessTippy
-         interactive //hiện tippy
-         visible={showResult && searchResult.length > 0} //hiển thị result khi đáp ứng cả 2 đk
-         render={(attrs) => (
-            <div className={cx('search-result')} tabIndex="-1" {...attrs}>
-               <PopperWrapper>
-                  <h4 className={cx('search-title')}>Acounts</h4>
-                  {searchResult.map((result) => (
-                     <AccountItem key={result.id} data={result} />
-                  ))}
-               </PopperWrapper>
-            </div>
-         )}
-         // khi click ra ngoài tippy
-         onClickOutside={handleHideResult}
-      >
-         <div className={cx('search-wrapper')}>
-            <input
-               ref={inputRef}
-               value={searchValue}
-               className={cx('search-input')}
-               placeholder="Search"
-               spellCheck={false}
-               onChange={handleChange}
-               onFocus={() => setShowResult(true)}
-            />
-
-            {!!searchValue && !loading && (
-               <button className={cx('clear')} onClick={handleClear}>
-                  <FontAwesomeIcon icon={faCircleXmark} />
-               </button>
+      // Using a wrapper <div> tag around the reference element
+      // solves this by creating a new parentNode context.
+      <div>
+         <HeadlessTippy
+            interactive //hiện tippy
+            visible={showResult && searchResult.length > 0} //hiển thị result khi đáp ứng cả 2 đk
+            render={(attrs) => (
+               <div className={cx('search-result')} tabIndex="-1" {...attrs}>
+                  <PopperWrapper>
+                     <h4 className={cx('search-title')}>Acounts</h4>
+                     {searchResult.map((result) => (
+                        <AccountItem key={result.id} data={result} />
+                     ))}
+                  </PopperWrapper>
+               </div>
             )}
+            // khi click ra ngoài tippy
+            onClickOutside={handleHideResult}
+         >
+            <div className={cx('search-wrapper')}>
+               <input
+                  ref={inputRef}
+                  value={searchValue}
+                  className={cx('search-input')}
+                  placeholder="Search"
+                  spellCheck={false}
+                  onChange={handleChange}
+                  onFocus={() => setShowResult(true)}
+               />
 
-            {loading && <FontAwesomeIcon className={cx('loading')} icon={faCircleNotch} />}
+               {!!searchValue && !loading && (
+                  <button className={cx('clear')} onClick={handleClear}>
+                     <FontAwesomeIcon icon={faCircleXmark} />
+                  </button>
+               )}
 
-            <span className={cx('border-between')}></span>
+               {loading && <FontAwesomeIcon className={cx('loading')} icon={faCircleNotch} />}
 
-            <button className={cx('search-btn')} onMouseDown={(e) => e.preventDefault()}>
-               <SearchIcon />
-            </button>
-         </div>
-      </HeadlessTippy>
+               <span className={cx('border-between')}></span>
+
+               <button className={cx('search-btn')} onMouseDown={(e) => e.preventDefault()}>
+                  <SearchIcon />
+               </button>
+            </div>
+         </HeadlessTippy>
+      </div>
    );
 }
 
