@@ -38,32 +38,35 @@ function Menu({ children, items = [], hideOnClick = false, onChange = defaultFnc
       });
    };
 
+   const handleBackMenu = () => {
+      setHistory((prev) => prev.slice(0, prev.length - 1)); //xóa menu hiện tại (pt cuối mảng) => trả về mảng mới (menu trước đó)
+   };
+
+   const renderResult = (attrs) => (
+      <div className={cx('menu-items')} tabIndex="-1" {...attrs}>
+         <PopperWrapper>
+            {history.length > 1 && ( //nếu cấp menu > 1 thì menu hiện header
+               <Header title={current.title} onBack={handleBackMenu} />
+            )}
+            <div className={cx('menu-body')}>{renderItems()}</div>
+         </PopperWrapper>
+      </div>
+   );
+
+   const handleResetMenu = () => {
+      setHistory((prev) => prev.slice(0, 1));
+   };
+
    return (
       <Tippy
-         hideOnClick={hideOnClick}
-         offset={[12, 12]}
-         interactive
+         hideOnClick={hideOnClick} //false => click vào element ko bị ẩn tippy
+         offset={[12, 12]} //vị trí tippy đối với element
+         interactive //true => hover vào cái tippy nó ko bị ẩn đi
          delay={[0, 700]}
-         // visible //bỏ visible để khi hover nó mới hiện lên
-         placement="bottom-end"
-         render={(attrs) => (
-            <div className={cx('menu-items')} tabIndex="-1" {...attrs}>
-               <PopperWrapper>
-                  {history.length > 1 && (
-                     <Header
-                        title={current.title}
-                        onBack={() => {
-                           // xóa phần tử cuối mảng là menu con hiện tại
-                           // chỉ chừa lại mảng ko gồm phần tử hiện tại (pt cuối)
-                           setHistory((prev) => prev.slice(0, prev.length - 1));
-                        }}
-                     />
-                  )}
-                  <div className={cx('menu-body')}>{renderItems()}</div>
-               </PopperWrapper>
-            </div>
-         )}
-         onHide={() => setHistory((prev) => prev.slice(0, 1))}
+         // visible //bỏ visible để khi hover vào element nó mới hiện lên
+         placement="bottom-end" //vị trí tippy đối với element
+         render={renderResult}
+         onHide={handleResetMenu} //khi tippy ẩn
       >
          {/* btn */}
          {children}

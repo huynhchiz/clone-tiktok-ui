@@ -39,13 +39,14 @@
 }
 
 .search-input {
-   line-height: 21px;
    flex: 1;
+   padding-right: 32px;
    font-size: 1.6rem;
    font-weight: 400;
+   line-height: 21px;
    letter-spacing: 0.03px;
-   outline: none;
    border: none;
+   outline: none;
    background-color: transparent;
    caret-color: var(--primary);
    color: var(--text-color);

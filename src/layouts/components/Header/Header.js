@@ -256,7 +256,9 @@ function Header() {
                   </>
                ) : (
                   <>
-                     <Button primary>Log in</Button>
+                     <Button primary to="/">
+                        Log in
+                     </Button>
                   </>
                )}
                {currentUser ? (

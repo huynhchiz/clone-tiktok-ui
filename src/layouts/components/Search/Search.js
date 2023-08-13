@@ -17,16 +17,16 @@ const cx = classNames.bind(styles);
 function Search() {
    const [searchValue, setSearchValue] = useState('');
    const [searchResult, setSearchResult] = useState([]);
-   const [showResult, setShowResult] = useState(true);
+   const [showResult, setShowResult] = useState(false);
    const [loading, setLoading] = useState(false);
 
-   const debounced = useDebounce(searchValue, 500);
+   const debouncedValue = useDebounce(searchValue, 500);
 
    const inputRef = useRef();
 
    // callAPI to show search result
    useEffect(() => {
-      if (!debounced.trim()) {
+      if (!debouncedValue.trim()) {
          setSearchResult([]);
          return;
       }
@@ -34,7 +34,7 @@ function Search() {
       const fetchApi = async () => {
          setLoading(true);
 
-         const result = await searchService.search(debounced);
+         const result = await searchService.search(debouncedValue);
 
          setSearchResult(result);
 
@@ -42,7 +42,7 @@ function Search() {
       };
 
       fetchApi();
-   }, [debounced]);
+   }, [debouncedValue]);
 
    const handleClear = () => {
       setSearchValue('');
@@ -67,7 +67,7 @@ function Search() {
       // solves this by creating a new parentNode context.
       <div>
          <HeadlessTippy
-            interactive //hiện tippy
+            interactive //true => hover vào cái tippy nó ko bị ẩn đi
             visible={showResult && searchResult.length > 0} //hiển thị result khi đáp ứng cả 2 đk
             render={(attrs) => (
                <div className={cx('search-result')} tabIndex="-1" {...attrs}>

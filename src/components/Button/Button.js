@@ -6,21 +6,24 @@ import { Link } from 'react-router-dom';
 const cx = classNames.bind(styles);
 
 function Button({
-   className,
+   //to,href => a btn Link
    to,
    href,
+   // icons inside btn
    leftIcon,
    rightIcon,
-   // types
+   //btn types
    primary = false,
    outline = false,
    normal = false,
    rounded = false,
-   // sizes
+   //btn sizes
    small = false,
    large = false,
-   //
+   //disabled
    disabled = false,
+   //other props
+   className,
    children,
    onClick,
    ...moreProps
@@ -53,7 +56,7 @@ function Button({
       primary, //btn chinh
       outline, //btn co outline
       normal, //btn upload
-      rounded, //btn co radius hoi tron, da co kich thuoc san
+      rounded, //btn co border radius hoi tron, da co kich thuoc san
       small,
       large,
       disabled,
@@ -72,8 +75,11 @@ Button.propTypes = {
    className: PropTypes.string,
    to: PropTypes.string,
    href: PropTypes.string,
+
+   children: PropTypes.node.isRequired,
    leftIcon: PropTypes.node,
    rightIcon: PropTypes.node,
+
    primary: PropTypes.bool,
    outline: PropTypes.bool,
    normal: PropTypes.bool,
@@ -81,7 +87,7 @@ Button.propTypes = {
    small: PropTypes.bool,
    large: PropTypes.bool,
    disabled: PropTypes.bool,
-   children: PropTypes.node.isRequired,
+
    onClick: PropTypes.func,
 };
 
