@@ -235,7 +235,6 @@ function Header() {
             </Link>
 
             <Search />
-
             <div className={cx('actions-wrapper')}>
                <Button normal leftIcon={<FontAwesomeIcon icon={faPlus} />}>
                   Upload

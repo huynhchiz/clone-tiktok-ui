@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import { forwardRef, useState } from 'react';
 import images from '../../assets/images';
@@ -7,7 +8,7 @@ const cx = classNames.bind(styles);
 
 // khi avatar bị lỗi => dùng customFallback từ ngoài truyền vào
 // nếu avt lỗi && ko có customFallback => dùng images.defaultAvatar
-function Image({ src, className, fallback: customFallback = images.defaultAvatar, alt, ...props }, ref) {
+const Image = forwardRef(({ src, className, fallback: customFallback = images.defaultAvatar, alt, ...props }, ref) => {
    // fallback : dự phòng
    const [fallback, setFallback] = useState('');
 
@@ -26,6 +27,13 @@ function Image({ src, className, fallback: customFallback = images.defaultAvatar
          onError={handleError}
       />
    );
-}
+});
 
-export default forwardRef(Image);
+Image.propTypes = {
+   src: PropTypes.string,
+   alt: PropTypes.string,
+   className: PropTypes.string,
+   fallback: PropTypes.string,
+};
+
+export default Image;
