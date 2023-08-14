@@ -67,6 +67,7 @@ function Search() {
       // solves this by creating a new parentNode context.
       <div>
          <HeadlessTippy
+            offset={[0, 10]} //vị trí tippy đối với element
             interactive //true => hover vào cái tippy nó ko bị ẩn đi
             visible={showResult && searchResult.length > 0} //hiển thị result khi đáp ứng cả 2 đk
             render={(attrs) => (
