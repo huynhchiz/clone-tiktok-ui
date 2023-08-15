@@ -24,6 +24,7 @@ import Button from '../../../components/Button';
 import Menu from '../../../components/Popper/Menu';
 import { InboxIcon, MessageIcon } from '../../../components/Icons';
 import Image from '../../../components/Image';
+import { useState } from 'react';
 
 const cx = classNames.bind(styles);
 
@@ -184,7 +185,7 @@ const MENU_ITEMS = [
 ];
 
 function Header() {
-   const currentUser = true;
+   const [currentUser, setCurrentUser] = useState(true);
 
    // Handle logic
    const handleMenuChange = (menuItem) => {
@@ -256,7 +257,7 @@ function Header() {
                   </>
                ) : (
                   <>
-                     <Button primary to="/">
+                     <Button primary onClick={() => setCurrentUser(true)}>
                         Log in
                      </Button>
                   </>

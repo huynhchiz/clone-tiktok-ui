@@ -5,7 +5,7 @@ import styles from './Menu.module.scss';
 const cx = classNames.bind(styles);
 
 function Menu({ children }) {
-   return <nav className={cx('menu')}>{children}</nav>;
+   return <nav className={cx('wrapper')}>{children}</nav>;
 }
 
 Menu.propTypes = {

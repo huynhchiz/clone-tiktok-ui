@@ -48,6 +48,7 @@ html *::-webkit-scrollbar-track {
 
 //
 button {
+   font-family: var(--font-family);
    outline: none;
    border: none;
    background-color: transparent;
