@@ -41,7 +41,7 @@
 }
 
 .body {
-   height: calc(var(--account-item-height) * 5);
+   // height: calc(var(--account-item-height) * 5);
    overflow: hidden;
 }
 
@@ -55,5 +55,5 @@
 }
 
 .show-more {
-   height: calc(var(--account-item-height) * 10);
+   // height: calc(var(--account-item-height) * 10);
 }

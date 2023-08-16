@@ -9,36 +9,32 @@ const cx = classNames.bind(styles);
 
 function FollowingAccounts({ heading }) {
    const [items, setItems] = useState([]);
-   const [showMore, setShowMore] = useState(false);
+   const [show, setShow] = useState('less');
 
    useEffect(() => {
-      fetch('https://tiktok.fullstack.edu.vn/api/users/search?q=hoa&type=more')
+      fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=h&type=${show}`)
          .then((res) => res.json())
          .then((post) => setItems(post.data));
-   }, []);
+   }, [show]);
 
-   const handleSeeMoreLess = () => {
-      if (showMore) {
-         setShowMore(false);
+   const handleShow = () => {
+      if (show === 'less') {
+         setShow('more');
       } else {
-         setShowMore(true);
+         setShow('less');
       }
    };
 
    return (
       <div className={cx('wrapper')}>
          <h1 className={cx('heading')}>{heading}</h1>
-         <div
-            className={cx('body', {
-               [cx('show-more')]: showMore,
-            })}
-         >
+         <div className={cx('body')}>
             {items.map((item) => (
                <AccountItem key={item.id} data={item} />
             ))}
          </div>
-         <button className={cx('more-btn')} onClick={handleSeeMoreLess}>
-            {showMore ? 'See less' : 'See more'}
+         <button className={cx('more-btn')} onClick={handleShow}>
+            {show === 'less' ? `See more` : `See less`}
          </button>
       </div>
    );
