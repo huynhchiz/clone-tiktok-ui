@@ -24,6 +24,7 @@ function Menu({ children, items = [], hideOnClick = false, onChange = defaultFnc
 
          return (
             <MenuItem
+               isLanguage={item.type === 'language'} //kiểm tra nếu type===language thì thêm class 'language-item'
                key={index}
                data={item}
                onClick={() => {

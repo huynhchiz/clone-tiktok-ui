@@ -6,9 +6,10 @@ import Button from '../../Button';
 
 const cx = classNames.bind(styles);
 
-function MenuItem({ data, onClick }) {
+function MenuItem({ data, onClick, isLanguage }) {
    const classes = cx('menu-item', {
       separate: data.separate,
+      [cx('language-item')]: isLanguage,
    });
 
    return (
@@ -21,6 +22,7 @@ function MenuItem({ data, onClick }) {
 MenuItem.propTypes = {
    data: PropTypes.object.isRequired,
    onClick: PropTypes.func,
+   isLanguage: PropTypes.bool,
 };
 
 export default MenuItem;

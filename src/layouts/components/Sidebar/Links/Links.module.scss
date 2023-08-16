@@ -1,0 +1,24 @@
+.wrapper {
+   padding-top: 16px;
+   padding-left: 8px;
+}
+
+.link-block {
+   margin-bottom: 8px;
+}
+
+.link-item {
+   display: inline-block;
+   margin-right: 6px;
+   margin-top: 5px;
+   font-size: 12px;
+   font-weight: 600;
+   line-height: 16px;
+   letter-spacing: 0.161px;
+   color: #16182380;
+
+   &:hover {
+      text-decoration: underline;
+      cursor: pointer;
+   }
+}

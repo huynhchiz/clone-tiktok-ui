@@ -14,6 +14,8 @@ import {
    ExploreActiveIcon,
    LiveActiveIcon,
 } from '../../../components/Icons/Icons';
+import Links from './Links';
+import { LINK_ITEMS } from '../../../consts';
 
 const cx = classNames.bind(styles);
 
@@ -41,6 +43,8 @@ function Sidebar() {
          </Menu>
 
          <FollowingAccounts heading="Following accounts" />
+
+         <Links data={LINK_ITEMS} />
       </aside>
    );
 }

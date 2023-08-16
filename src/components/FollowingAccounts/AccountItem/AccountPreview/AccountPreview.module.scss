@@ -1,0 +1,69 @@
+.wrapper {
+   width: calc(var(--width) - 8px);
+   padding: 16px;
+}
+
+.heading {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+}
+
+.avatar {
+   width: 46px;
+   height: 46px;
+   border-radius: 50%;
+   object-fit: cover;
+   cursor: pointer;
+}
+
+.user-acount {
+   margin-top: 12px;
+   display: flex;
+   align-items: center;
+   cursor: pointer;
+
+   span {
+      max-width: 145px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-size: 1.8rem;
+      font-weight: 700;
+      line-height: 2.1rem;
+      color: var(--text-color);
+   }
+}
+
+.check-icon {
+   font-size: 1.4rem;
+   color: rgb(32, 213, 236);
+   margin-left: 8px;
+}
+
+.user-name {
+   font-size: 1.2rem;
+   font-weight: 400;
+   line-height: 1.5rem;
+   color: var(--text-color);
+   cursor: pointer;
+}
+
+.fame {
+   margin-top: 12px;
+   display: flex;
+   align-items: center;
+}
+
+.fame-item {
+   display: flex;
+   align-items: center;
+
+   span {
+      margin-left: 6px;
+      color: #161823bf;
+   }
+}
+
+.fame-item + .fame-item {
+   margin-left: 24px;
+}
