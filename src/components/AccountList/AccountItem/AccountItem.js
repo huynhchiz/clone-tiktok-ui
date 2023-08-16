@@ -19,7 +19,7 @@ function AccountItem({ data }) {
                   <span>{data.nickname}</span>
                   {data.tick && <FontAwesomeIcon className={cx('check-icon')} icon={faCircleCheck} />}
                </div>
-               <p className={cx('user-name')}>{data.full_name}</p>
+               <p className={cx('user-name')}>{data.first_name + ' ' + data.last_name}</p>
             </div>
          </Link>
       </AccountPreview>
