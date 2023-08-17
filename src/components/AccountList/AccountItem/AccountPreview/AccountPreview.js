@@ -1,26 +1,31 @@
 import PropTypes from 'prop-types';
-import styles from './AccountPreview.module.scss';
-import Tippy from '@tippyjs/react/headless';
 import classNames from 'classnames/bind';
-import Wrapper from '../../../Popper/Wrapper';
-import Button from '../../../Button/Button';
+import Tippy from '@tippyjs/react/headless';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleCheck } from '@fortawesome/free-solid-svg-icons';
 
+import styles from './AccountPreview.module.scss';
+import Wrapper from '../../../Popper/Wrapper';
+import Button from '../../../Button/Button';
+import Image from '../../../Image';
+
 const cx = classNames.bind(styles);
 
-function AccountPreview({ children, data }) {
+function AccountPreview({ children, data, messageBtn = false }) {
    const renderPreview = (props) => (
       <div tabIndex="-1" {...props}>
          <Wrapper className={cx('wrapper')}>
             <div className={cx('heading')}>
-               <img className={cx('avatar')} src={data.avatar} alt={data.nickname} />
-               {/* <Button primary small>
-                Follow
-             </Button> */}
-               <Button outline small>
-                  Message
-               </Button>
+               <Image className={cx('avatar')} src={data.avatar} alt={data.nickname} />
+               {messageBtn ? (
+                  <Button outline small>
+                     Message
+                  </Button>
+               ) : (
+                  <Button primary small>
+                     Follow
+                  </Button>
+               )}
             </div>
             <div className={cx('user-acount')}>
                <span>{data.nickname}</span>
@@ -60,6 +65,7 @@ function AccountPreview({ children, data }) {
 AccountPreview.propTypes = {
    children: PropTypes.node.isRequired,
    data: PropTypes.object.isRequired,
+   messageBtn: PropTypes.bool,
 };
 
 export default AccountPreview;
