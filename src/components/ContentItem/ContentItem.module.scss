@@ -1,0 +1,154 @@
+.wrapper {
+   position: relative;
+   display: flex;
+   margin: 20px auto;
+   max-width: 692px;
+   height: 700px;
+   border-bottom: 1px solid #e7e7e9;
+}
+
+.avatar {
+   width: 56px;
+   height: 56px;
+   border-radius: 50%;
+   object-fit: cover;
+   cursor: pointer;
+}
+
+.content {
+   margin-left: 12px;
+}
+
+.heading {
+   margin-bottom: 12px;
+   max-width: 510px;
+}
+
+.name-wrapper {
+   display: flex;
+   align-items: center;
+   height: 28px;
+   &:hover .nickname {
+      text-decoration: underline;
+   }
+}
+
+.nickname {
+   margin-right: 4px;
+   margin-top: -2px;
+   font-size: 1.8rem;
+   font-weight: 700;
+   line-height: 24px;
+   cursor: pointer;
+}
+
+.name {
+   font-size: 1.4rem;
+   font-weight: 400;
+   cursor: pointer;
+}
+
+.description {
+   position: relative;
+   display: flex;
+}
+
+.text {
+   display: inline;
+   display: -webkit-box;
+   height: 42px;
+   font-size: 1.6rem;
+   line-height: 21px;
+   overflow: hidden;
+   text-overflow: ellipsis;
+   -webkit-line-clamp: 2;
+   -webkit-box-orient: vertical;
+}
+
+.more-btn {
+   position: absolute;
+   padding: 0 6px;
+   right: 0;
+   bottom: 0;
+   font-size: 1.6rem;
+   font-weight: 600;
+   line-height: 2.1rem;
+   cursor: pointer;
+}
+
+.song {
+   display: flex;
+   align-items: center;
+   margin-top: 2px;
+   margin-left: 2px;
+   cursor: pointer;
+
+   &:hover .song-title {
+      text-decoration: underline;
+   }
+}
+
+.song-icon {
+   margin-right: 6px;
+   width: 12px;
+   height: 12px;
+}
+
+.song-title {
+   font-size: 1.4rem;
+   font-weight: 400;
+   line-height: 2.1rem;
+}
+
+.video-wrapper {
+   display: flex;
+   align-items: end;
+   max-height: 567px;
+   height: 100%;
+}
+
+.video {
+   min-width: 312px;
+   max-width: 556px;
+   height: 100%;
+   margin-right: 20px;
+   object-fit: cover;
+   border-radius: 8px;
+}
+
+.interacts {
+}
+
+.interact-item {
+   cursor: pointer;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+
+.interact-icon-wrapper {
+   margin: 8px 0 6px 0;
+   width: 48px;
+   height: 48px;
+   line-height: 5.2rem;
+   text-align: center;
+   background-color: #1618230f;
+   border-radius: 50%;
+}
+
+.interact-icon {
+   font-size: 2.2rem;
+}
+
+.statistical {
+   font-size: 1.2rem;
+   line-height: 1.6rem;
+   text-align: center;
+   color: var(--text-color);
+}
+
+.follow-btn {
+   position: absolute;
+   top: 8px;
+   right: 0;
+}

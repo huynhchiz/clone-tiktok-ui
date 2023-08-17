@@ -1,6 +1,12 @@
+import Content from '../../layouts/components/Content';
+
 //foryou
 function Home() {
-   return <h1>Home page</h1>;
+   return (
+      <>
+         <Content />
+      </>
+   );
 }
 
 export default Home;
