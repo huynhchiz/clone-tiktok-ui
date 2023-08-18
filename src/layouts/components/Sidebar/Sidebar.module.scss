@@ -1,4 +1,18 @@
+// responsive
+$min-width: 1072px;
+$max-width: 1071px;
+
 .wrapper {
-   width: var(--default-layout-sidebar-width);
-   padding: 20px 0 26px 8px;
+   @media (min-width: $min-width) {
+      width: var(--default-layout-sidebar-width);
+      padding: 20px 0 26px 8px;
+   }
+
+   @media (max-width: $max-width) {
+      width: 72px;
+      padding: 12px 8px 26px 8px;
+      border-right: 1px solid #1618231f;
+      box-shadow: 0px 2px 8px #0000000f;
+      overflow: hidden;
+   }
 }

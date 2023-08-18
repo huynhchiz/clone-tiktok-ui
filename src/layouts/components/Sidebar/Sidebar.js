@@ -79,6 +79,7 @@ function Sidebar() {
             onViewChange={handleViewChange}
             btnShow={seeBtn}
          />
+
          <AccountList heading="Following accounts" messageBtn data={suggestedUser} />
 
          <Links data={LINK_ITEMS} />

@@ -1,3 +1,7 @@
+// responsive
+$min-width: 1072px;
+$max-width: 1071px;
+
 .wrapper {
    width: var(--width);
    display: flex;
@@ -22,6 +26,10 @@
 
 .info {
    flex: 1;
+
+   @media (max-width: $max-width) {
+      display: none;
+   }
 }
 
 .user-account {

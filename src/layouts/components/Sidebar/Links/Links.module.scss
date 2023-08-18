@@ -1,6 +1,26 @@
+// responsive
+$min-width: 1072px;
+$max-width: 1071px;
+
 .wrapper {
+   position: relative;
    padding-top: 16px;
    padding-left: 8px;
+
+   &::before {
+      content: '';
+      position: absolute;
+      height: 1px;
+      left: 8px;
+      right: 8px;
+      top: 0;
+      background-color: #1618231f;
+      transform: scaleY(0.5);
+   }
+
+   @media (max-width: $max-width) {
+      display: none;
+   }
 }
 
 .link-block {
