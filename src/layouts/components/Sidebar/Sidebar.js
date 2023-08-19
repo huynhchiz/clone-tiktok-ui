@@ -52,37 +52,39 @@ function Sidebar() {
 
    return (
       <aside className={cx('wrapper')}>
-         <Menu>
-            <MenuItem title="For You" to={config.routes.home} icon={<HomeIcon />} activeIcon={<HomeActiveIcon />} />
+         <div className={cx('inner')}>
+            <Menu>
+               <MenuItem title="For You" to={config.routes.home} icon={<HomeIcon />} activeIcon={<HomeActiveIcon />} />
 
-            <MenuItem
-               title="Following"
-               to={config.routes.following}
-               icon={<UserGroupIcon />}
-               activeIcon={<UserGroupActiveIcon />}
+               <MenuItem
+                  title="Following"
+                  to={config.routes.following}
+                  icon={<UserGroupIcon />}
+                  activeIcon={<UserGroupActiveIcon />}
+               />
+
+               <MenuItem
+                  title="Explore"
+                  to={config.routes.explore}
+                  icon={<ExploreIcon />}
+                  activeIcon={<ExploreActiveIcon />}
+               />
+
+               <MenuItem title="LIVE" to={config.routes.live} icon={<LiveIcon />} activeIcon={<LiveActiveIcon />} />
+            </Menu>
+
+            <AccountList
+               heading="Suggested accounts"
+               // messageBtn //mặc định sẽ là follow button
+               data={suggestedUser}
+               onViewChange={handleViewChange}
+               btnShow={seeBtn}
             />
 
-            <MenuItem
-               title="Explore"
-               to={config.routes.explore}
-               icon={<ExploreIcon />}
-               activeIcon={<ExploreActiveIcon />}
-            />
+            <AccountList heading="Following accounts" messageBtn data={suggestedUser} />
 
-            <MenuItem title="LIVE" to={config.routes.live} icon={<LiveIcon />} activeIcon={<LiveActiveIcon />} />
-         </Menu>
-
-         <AccountList
-            heading="Suggested accounts"
-            // messageBtn //mặc định sẽ là follow button
-            data={suggestedUser}
-            onViewChange={handleViewChange}
-            btnShow={seeBtn}
-         />
-
-         <AccountList heading="Following accounts" messageBtn data={suggestedUser} />
-
-         <Links data={LINK_ITEMS} />
+            <Links data={LINK_ITEMS} />
+         </div>
       </aside>
    );
 }

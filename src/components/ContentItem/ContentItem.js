@@ -1,10 +1,12 @@
+import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBookmark, faCommentDots, faHeart, faMusic, faShare } from '@fortawesome/free-solid-svg-icons';
+import { faMusic } from '@fortawesome/free-solid-svg-icons';
 
 import styles from './ContentItem.module.scss';
 import Image from '../../components/Image';
 import Button from '../../components/Button';
+import InteractItem from '../InteractItem';
 // import AccountPreview from '../AccountList/AccountItem/AccountPreview';
 
 const cx = classNames.bind(styles);
@@ -35,40 +37,13 @@ function ContentItem({ data }) {
             </div>
 
             <div className={cx('video-wrapper')}>
-               <video controls className={cx('video')} src={data.file_url} alt="acv" autoPlay={true} />
+               <video controls loop className={cx('video')} src={data.file_url} alt="acv" autoPlay muted />
 
                <div className={cx('interacts')}>
-                  {/* likes */}
-                  <div className={cx('interact-item')}>
-                     <div className={cx('interact-icon-wrapper')}>
-                        <FontAwesomeIcon className={cx('interact-icon')} icon={faHeart} />
-                     </div>
-                     <strong className={cx('statistical')}>{data.likes_count}</strong>
-                  </div>
-
-                  {/* comments */}
-                  <div className={cx('interact-item')}>
-                     <div className={cx('interact-icon-wrapper')}>
-                        <FontAwesomeIcon className={cx('interact-icon')} icon={faCommentDots} />
-                     </div>
-                     <strong className={cx('statistical')}>{data.comments_count}</strong>
-                  </div>
-
-                  {/* saves */}
-                  <div className={cx('interact-item')}>
-                     <div className={cx('interact-icon-wrapper')}>
-                        <FontAwesomeIcon className={cx('interact-icon')} icon={faBookmark} />
-                     </div>
-                     <strong className={cx('statistical')}>{data.shares_count}</strong>
-                  </div>
-
-                  {/* shares */}
-                  <div className={cx('interact-item')}>
-                     <div className={cx('interact-icon-wrapper')}>
-                        <FontAwesomeIcon className={cx('interact-icon')} icon={faShare} />
-                     </div>
-                     <strong className={cx('statistical')}>{data.shares_count}</strong>
-                  </div>
+                  <InteractItem type="likes" data={data} />
+                  <InteractItem type="comments" data={data} />
+                  <InteractItem type="saves" data={data} />
+                  <InteractItem type="shares" data={data} />
                </div>
             </div>
 
@@ -79,5 +54,9 @@ function ContentItem({ data }) {
       </div>
    );
 }
+
+ContentItem.propTypes = {
+   data: PropTypes.object.isRequired,
+};
 
 export default ContentItem;
