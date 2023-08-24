@@ -1,8 +1,110 @@
-.video {
+.wrapper {
+   position: relative;
    min-width: 312px;
    max-width: 556px;
    height: 100%;
    margin-right: 20px;
+}
+
+.video {
+   width: 100%;
+   height: 100%;
    object-fit: cover;
    border-radius: 8px;
+   cursor: pointer;
+}
+
+.controls {
+   position: absolute;
+   width: 100%;
+   padding: 12px;
+   bottom: 0;
+   left: 0;
+   color: var(--white-text);
+   z-index: 2;
+}
+
+.buttons {
+   height: 40px;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   padding: 8px 12px;
+}
+
+.play-pause {
+   display: flex;
+   align-items: center;
+}
+
+.btn-inside-video {
+   width: 20px;
+   height: 20px;
+   cursor: pointer;
+}
+
+// volume
+.volume {
+   position: relative;
+}
+
+.volume-process-wrapper {
+   position: absolute;
+   top: -72px;
+   left: 50%;
+   transform: translateX(-50%);
+   width: 22px;
+   height: 64px;
+   background-color: #16182357;
+   border-radius: 40px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.volume-process {
+   position: relative;
+   width: 2px;
+   height: 68%;
+   background-color: #ffffff57;
+}
+
+.volume-line {
+   position: absolute;
+   bottom: 0;
+   left: 0;
+   right: 0;
+   width: 2px;
+   height: 75%; //onChange
+   background-color: #fff;
+}
+
+.volume-thumb {
+   position: absolute;
+   bottom: 0; //onChange
+   left: -5px;
+   width: 12px;
+   height: 12px;
+   border-radius: 50%;
+   background-color: #fff;
+}
+
+.volume-on-off {
+   display: flex;
+   align-items: center;
+}
+
+// time process
+.timer {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+}
+
+.time-process {
+   width: 100%;
+   height: 2px;
+}
+
+.time-count {
 }
