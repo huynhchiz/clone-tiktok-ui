@@ -9,6 +9,8 @@ const cx = classNames.bind(styles);
 
 function Content() {
    const [videos, setVideos] = useState([]);
+   const [muteAll, setMuteAll] = useState(true);
+   const [volume, setVolume] = useState(20);
 
    useEffect(() => {
       const fetchApi = async () => {
@@ -20,10 +22,35 @@ function Content() {
       fetchApi();
    }, []);
 
+   const handleMuteAll = () => {
+      if (muteAll) {
+         setMuteAll(false);
+      } else {
+         setMuteAll(true);
+      }
+   };
+
+   const handleVolume = (e) => {
+      setVolume(parseInt(e.target.value));
+
+      if (volume <= 0) {
+         setMuteAll(true);
+      } else {
+         setMuteAll(false);
+      }
+   };
+
    return (
       <div className={cx('wrapper')}>
          {videos.map((video) => (
-            <ContentItem key={video.id} data={video} />
+            <ContentItem
+               key={video.id}
+               data={video}
+               muteAll={muteAll}
+               onMute={handleMuteAll}
+               handleVolume={handleVolume}
+               volume={volume}
+            />
          ))}
       </div>
    );

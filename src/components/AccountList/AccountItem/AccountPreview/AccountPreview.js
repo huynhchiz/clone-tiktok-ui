@@ -11,10 +11,14 @@ import Image from '../../../Image';
 
 const cx = classNames.bind(styles);
 
-function AccountPreview({ children, data, messageBtn = false }) {
+function AccountPreview({ children, data, messageBtn = false, posittionOffset = [0, 0], big = false }) {
    const renderPreview = (props) => (
       <div tabIndex="-1" {...props}>
-         <Wrapper className={cx('wrapper')}>
+         <Wrapper
+            className={cx('wrapper', {
+               'big-wrapper': big,
+            })}
+         >
             <div className={cx('heading')}>
                <Image className={cx('avatar')} src={data.avatar} alt={data.nickname} />
                {messageBtn ? (
@@ -42,6 +46,11 @@ function AccountPreview({ children, data, messageBtn = false }) {
                   <span>Likes</span>
                </div>
             </div>
+            {big && (
+               <div className={cx('footer')}>
+                  <p className={cx('footer-content')}>{data.bio}</p>
+               </div>
+            )}
          </Wrapper>
       </div>
    );
@@ -53,7 +62,7 @@ function AccountPreview({ children, data, messageBtn = false }) {
             interactive
             render={renderPreview}
             placement="bottom"
-            offset={[0, 0]}
+            offset={posittionOffset}
             delay={[800, 0]}
          >
             {children}

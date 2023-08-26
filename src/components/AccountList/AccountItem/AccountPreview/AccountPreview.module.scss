@@ -3,6 +3,10 @@
    padding: 16px;
 }
 
+.big-wrapper {
+   width: 320px;
+}
+
 .heading {
    display: flex;
    justify-content: space-between;
@@ -66,4 +70,17 @@
 
 .fame-item + .fame-item {
    margin-left: 24px;
+}
+
+.footer {
+   margin-top: 16px;
+   border-top: 1px solid #e5e5e5;
+}
+
+.footer-content {
+   margin-top: 16px;
+   font-size: 1.4rem;
+   line-height: 1.8rem;
+   letter-spacing: 0.093px;
+   color: var(--text-color);
 }
