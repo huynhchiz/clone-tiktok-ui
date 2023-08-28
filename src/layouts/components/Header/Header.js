@@ -102,7 +102,7 @@ function Header() {
                   <Menu items={menuUser} onChange={handleMenuChange}>
                      <Image
                         className={cx('user-avatar')}
-                        src="https://p16-sign-useast2a.tiktokcdn.com/tos-useast2a-avt-0068-giso/977b0eda9dee55b2a2dfd266f5ccd729~c5_720x720.jpeg?x-expires=1691492400&x-signature=FIhG%2B5i33SMXCVfR7956qWRIZ9I%3D"
+                        src=""
                         alt="Huynh Chi"
                         // fallback="https://musicart.xboxlive.com/7/4d4d6500-0000-0000-0000-000000000002/504/image.jpg?w=1920&h=1080"
                      />

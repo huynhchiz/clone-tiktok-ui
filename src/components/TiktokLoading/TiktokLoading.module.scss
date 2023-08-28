@@ -1,0 +1,66 @@
+.wrapper {
+   display: flex;
+   z-index: 20;
+   position: absolute;
+   top: 50%;
+   right: 50%;
+   transform: translateX(50%) translateY(-50%);
+}
+
+.red-circle {
+   width: 38px;
+   height: 38px;
+   border-radius: 50%;
+   background-color: red;
+   animation: moving-right ease-in 1s infinite;
+   opacity: 0.8;
+}
+
+.blue-circle {
+   width: 38px;
+   height: 38px;
+   border-radius: 50%;
+   background-color: blue;
+   animation: moving-left ease-in 1s infinite;
+   opacity: 0.8;
+}
+
+@keyframes moving-right {
+   //red
+   0% {
+      transform: 0;
+   }
+   25% {
+      transform: translateX(60%);
+   }
+   50% {
+      transform: translateX(120%);
+   }
+   75% {
+      transform: translateX(60%);
+      z-index: 1;
+   }
+   100% {
+      transform: 0;
+      z-index: 1;
+   }
+}
+
+@keyframes moving-left {
+   //blue
+   0% {
+      transform: 0;
+   }
+   25% {
+      transform: translateX(-60%);
+   }
+   50% {
+      transform: translateX(-120%);
+   }
+   75% {
+      transform: translateX(-60%);
+   }
+   100% {
+      transform: 0;
+   }
+}

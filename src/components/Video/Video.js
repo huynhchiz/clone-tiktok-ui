@@ -7,6 +7,7 @@ import { faPause, faPlay, faVolumeHigh, faVolumeXmark } from '@fortawesome/free-
 
 import styles from './Video.module.scss';
 import { formatSec } from '../../hooks';
+import TiktokLoading from '../TiktokLoading';
 
 const cx = classNames.bind(styles);
 
@@ -16,9 +17,11 @@ function Video({ data, muteAll, onMute, handleVolume, volume }) {
    const volumeLineRef = useRef();
    const timeProcessRef = useRef();
 
+   const [canPlay, setCanPlay] = useState(false);
    const [playing, setPlaying] = useState(false);
    const [timePercent, setTimePercent] = useState(0);
    const [currentTime, setCurrentTime] = useState(0);
+   const [waiting, setWaiting] = useState(false);
 
    useEffect(() => {
       videoRef.current.volume = volume / 100;
@@ -28,17 +31,26 @@ function Video({ data, muteAll, onMute, handleVolume, volume }) {
       setCurrentTime(Math.floor(parseInt((videoRef.current.duration / 1000) * timePercent)));
    }, [timePercent]);
 
-   const handlePlay = () => {
-      setPlaying(true);
+   const handleCanPlay = () => {
+      setCanPlay(true);
+   };
 
-      thumbRef.current.style.display = 'none';
-      videoRef.current.style.display = 'block';
-      videoRef.current.play();
+   const handlePlay = () => {
+      if (canPlay) {
+         setPlaying(true);
+         videoRef.current.style.display = 'block';
+         thumbRef.current.style.display = 'none';
+         setTimeout(() => {
+            videoRef.current.play();
+         }, 200);
+      }
    };
 
    const handlePause = () => {
-      setPlaying(false);
-      videoRef.current.pause();
+      if (!videoRef.current.paused && playing) {
+         setPlaying(false);
+         videoRef.current.pause();
+      }
    };
 
    const handleShowTime = () => {
@@ -50,25 +62,35 @@ function Video({ data, muteAll, onMute, handleVolume, volume }) {
       videoRef.current.currentTime = (videoRef.current.duration / 1000) * timePercent;
    };
 
+   const handleWaiting = () => {
+      setWaiting(true);
+   };
+
    return (
       <div className={cx('wrapper')}>
+         <div className={cx('thumb-wrapper')} ref={thumbRef}>
+            <img className={cx('thumb-img')} src={data.thumb_url} alt={data.description} />
+         </div>
          <Waypoint onEnter={handlePlay} onLeave={handlePause}>
             <div className={cx('video-waypoint')}></div>
          </Waypoint>
 
-         <div className={cx('thumb-wrapper')} ref={thumbRef}>
-            <img className={cx('thumb-img')} src={data.thumb_url} alt={data.description} />
-         </div>
+         <div className={cx('video-wrapper')}>
+            <video
+               id={data.id}
+               ref={videoRef}
+               loop
+               className={cx('video')}
+               src={data.file_url}
+               alt={data.description}
+               muted={muteAll}
+               onCanPlay={handleCanPlay}
+               onWaiting={handleWaiting}
+               onTimeUpdate={handleShowTime}
+            />
 
-         <video
-            ref={videoRef}
-            loop
-            className={cx('video')}
-            src={data.file_url}
-            alt={data.description}
-            muted={muteAll}
-            onTimeUpdate={handleShowTime}
-         />
+            {waiting ? <TiktokLoading /> : <></>}
+         </div>
 
          <div className={cx('controls')}>
             <div className={cx('buttons')}>
@@ -128,9 +150,6 @@ function Video({ data, muteAll, onMute, handleVolume, volume }) {
                      max="1000"
                      value={timePercent}
                      onInput={handleTimeProcess}
-                     onChange={handleTimeProcess}
-                     onMouseDown={handleTimeProcess}
-                     onMouseUp={handleTimeProcess}
                   />
                   <div className={cx('current-time-process')} style={{ width: `${timePercent / 10}%` }}></div>
                </div>

@@ -1,5 +1,6 @@
 import classNames from 'classnames/bind';
 import { useState, useEffect } from 'react';
+import { Waypoint } from 'react-waypoint';
 
 import styles from './Content.module.scss';
 import ContentItem from '../../../components/ContentItem';
@@ -9,6 +10,7 @@ const cx = classNames.bind(styles);
 
 function Content() {
    const [videos, setVideos] = useState([]);
+   const [page, setPage] = useState(2);
    const [muteAll, setMuteAll] = useState(true);
    const [volume, setVolume] = useState(20);
 
@@ -21,6 +23,20 @@ function Content() {
 
       fetchApi();
    }, []);
+
+   useEffect(() => {
+      const fetchApi = async () => {
+         const newResult = await videoService.getVideoList({ type: 'for-you', page: page });
+
+         setVideos((prev) => prev.concat(newResult));
+      };
+
+      fetchApi();
+   }, [page]);
+
+   const handleNewPage = () => {
+      setPage((prev) => prev + 1);
+   };
 
    const handleMuteAll = () => {
       if (muteAll) {
@@ -52,6 +68,9 @@ function Content() {
                volume={volume}
             />
          ))}
+         <Waypoint onEnter={handleNewPage}>
+            <div className={cx('content-waypoint')}></div>
+         </Waypoint>
       </div>
    );
 }

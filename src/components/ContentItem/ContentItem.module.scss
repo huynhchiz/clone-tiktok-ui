@@ -3,7 +3,7 @@
    display: flex;
    margin: 20px auto;
    max-width: 692px;
-   height: 700px;
+   min-height: 700px;
    border-bottom: 1px solid #e7e7e9;
 }
 
@@ -17,6 +17,7 @@
 
 .content {
    margin-left: 12px;
+   margin-bottom: 24px;
 }
 
 .heading {

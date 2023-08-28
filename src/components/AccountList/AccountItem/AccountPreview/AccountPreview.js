@@ -57,6 +57,7 @@ function AccountPreview({ children, data, messageBtn = false, posittionOffset = 
    return (
       <div>
          <Tippy
+            appendTo={document.getElementById('root')}
             // visible
             hideOnClick={false}
             interactive
