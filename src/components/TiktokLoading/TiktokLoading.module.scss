@@ -12,7 +12,7 @@
    height: 38px;
    border-radius: 50%;
    background-color: red;
-   animation: moving-right ease-in 1s infinite;
+   animation: moving-right ease-in 1.5s infinite;
    opacity: 0.8;
 }
 
@@ -21,7 +21,7 @@
    height: 38px;
    border-radius: 50%;
    background-color: blue;
-   animation: moving-left ease-in 1s infinite;
+   animation: moving-left ease-in 1.5s infinite;
    opacity: 0.8;
 }
 
@@ -31,13 +31,13 @@
       transform: 0;
    }
    25% {
-      transform: translateX(60%);
+      transform: translateX(50%);
    }
    50% {
-      transform: translateX(120%);
+      transform: translateX(100%);
    }
    75% {
-      transform: translateX(60%);
+      transform: translateX(50%);
       z-index: 1;
    }
    100% {
@@ -52,13 +52,13 @@
       transform: 0;
    }
    25% {
-      transform: translateX(-60%);
+      transform: translateX(-50%);
    }
    50% {
-      transform: translateX(-120%);
+      transform: translateX(-100%);
    }
    75% {
-      transform: translateX(-60%);
+      transform: translateX(-50%);
    }
    100% {
       transform: 0;

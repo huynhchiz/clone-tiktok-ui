@@ -12,7 +12,7 @@ import AccountPreview from '../AccountList/AccountItem/AccountPreview';
 
 const cx = classNames.bind(styles);
 
-function ContentItem({ data, muteAll, onMute, handleVolume, volume }) {
+function ContentItem({ data, muteAll, onMute, handleVolume, volume, sendCurrentVideo }) {
    return (
       <div className={cx('wrapper')}>
          <AccountPreview data={data.user} posittionOffset={[124, 0]} big>
@@ -40,7 +40,14 @@ function ContentItem({ data, muteAll, onMute, handleVolume, volume }) {
             </div>
 
             <div className={cx('video-wrapper')}>
-               <Video data={data} muteAll={muteAll} onMute={onMute} handleVolume={handleVolume} volume={volume} />
+               <Video
+                  data={data}
+                  muteAll={muteAll}
+                  onMute={onMute}
+                  handleVolume={handleVolume}
+                  volume={volume}
+                  sendCurrentVideo={sendCurrentVideo}
+               />
 
                <div className={cx('interacts')}>
                   <InteractItem type="likes" data={data} />

@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import { useState, useRef, useEffect } from 'react';
+
 import { Waypoint } from 'react-waypoint';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPause, faPlay, faVolumeHigh, faVolumeXmark } from '@fortawesome/free-solid-svg-icons';
@@ -11,13 +12,12 @@ import TiktokLoading from '../TiktokLoading';
 
 const cx = classNames.bind(styles);
 
-function Video({ data, muteAll, onMute, handleVolume, volume }) {
+function Video({ data, muteAll, onMute, handleVolume, volume, sendCurrentVideo }) {
    const thumbRef = useRef();
    const videoRef = useRef();
    const volumeLineRef = useRef();
    const timeProcessRef = useRef();
 
-   const [canPlay, setCanPlay] = useState(false);
    const [playing, setPlaying] = useState(false);
    const [timePercent, setTimePercent] = useState(0);
    const [currentTime, setCurrentTime] = useState(0);
@@ -31,19 +31,22 @@ function Video({ data, muteAll, onMute, handleVolume, volume }) {
       setCurrentTime(Math.floor(parseInt((videoRef.current.duration / 1000) * timePercent)));
    }, [timePercent]);
 
-   const handleCanPlay = () => {
-      setCanPlay(true);
+   const handleIsPlaying = () => {
+      setPlaying(true);
+      setWaiting(false);
+   };
+
+   const handleIsPause = () => {
+      setPlaying(false);
    };
 
    const handlePlay = () => {
-      if (canPlay) {
-         setPlaying(true);
-         videoRef.current.style.display = 'block';
-         thumbRef.current.style.display = 'none';
-         setTimeout(() => {
-            videoRef.current.play();
-         }, 200);
-      }
+      setPlaying(true);
+      videoRef.current.style.display = 'block';
+      thumbRef.current.style.display = 'none';
+      setTimeout(() => {
+         sendCurrentVideo(videoRef.current);
+      }, 200);
    };
 
    const handlePause = () => {
@@ -71,20 +74,21 @@ function Video({ data, muteAll, onMute, handleVolume, volume }) {
          <div className={cx('thumb-wrapper')} ref={thumbRef}>
             <img className={cx('thumb-img')} src={data.thumb_url} alt={data.description} />
          </div>
+
          <Waypoint onEnter={handlePlay} onLeave={handlePause}>
             <div className={cx('video-waypoint')}></div>
          </Waypoint>
 
          <div className={cx('video-wrapper')}>
             <video
-               id={data.id}
                ref={videoRef}
                loop
                className={cx('video')}
                src={data.file_url}
                alt={data.description}
                muted={muteAll}
-               onCanPlay={handleCanPlay}
+               onPlaying={handleIsPlaying}
+               onPause={handleIsPause}
                onWaiting={handleWaiting}
                onTimeUpdate={handleShowTime}
             />

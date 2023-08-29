@@ -14,6 +14,8 @@ function Content() {
    const [muteAll, setMuteAll] = useState(true);
    const [volume, setVolume] = useState(20);
 
+   const [currentVideo, setCurrentVideo] = useState();
+
    useEffect(() => {
       const fetchApi = async () => {
          const result = await videoService.getVideoList({ type: 'for-you', page: 1 });
@@ -33,6 +35,20 @@ function Content() {
 
       fetchApi();
    }, [page]);
+
+   //get the current video to play and pause all the other videos
+   const getCurrentVideo = (video) => {
+      setCurrentVideo(video);
+   };
+
+   useEffect(() => {
+      let videoList = document.querySelectorAll('video');
+      for (let i = 0; i < videoList.length; i++) {
+         videoList[i].pause();
+      }
+      if (currentVideo) currentVideo.play();
+   }, [currentVideo]);
+   /////////////
 
    const handleNewPage = () => {
       setPage((prev) => prev + 1);
@@ -66,6 +82,7 @@ function Content() {
                onMute={handleMuteAll}
                handleVolume={handleVolume}
                volume={volume}
+               sendCurrentVideo={getCurrentVideo}
             />
          ))}
          <Waypoint onEnter={handleNewPage}>
