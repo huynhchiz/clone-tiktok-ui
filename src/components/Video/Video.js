@@ -45,7 +45,10 @@ function Video({ data, muteAll, onMute, handleVolume, volume, sendCurrentVideo }
       videoRef.current.style.display = 'block';
       thumbRef.current.style.display = 'none';
       setTimeout(() => {
-         sendCurrentVideo(videoRef.current);
+         if (videoRef.current) {
+            sendCurrentVideo(videoRef.current);
+            videoRef.current.play();
+         }
       }, 200);
    };
 
@@ -74,7 +77,6 @@ function Video({ data, muteAll, onMute, handleVolume, volume, sendCurrentVideo }
          <div className={cx('thumb-wrapper')} ref={thumbRef}>
             <img className={cx('thumb-img')} src={data.thumb_url} alt={data.description} />
          </div>
-
          <Waypoint onEnter={handlePlay} onLeave={handlePause}>
             <div className={cx('video-waypoint')}></div>
          </Waypoint>
